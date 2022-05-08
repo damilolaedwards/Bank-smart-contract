@@ -26,7 +26,7 @@ contract Bank is Ownable, ReentrancyGuard {
     //staking rewards deposited by contract owner
     uint256 public s_rewards;
 
-    //Total value locked in protocol 
+    //Total value locked in protocol
     uint256 public s_totalDeposits;
 
     //user deposits
@@ -72,7 +72,6 @@ contract Bank is Ownable, ReentrancyGuard {
 
     event Deposit(address indexed sender, uint256 amount);
     event Withdrawal(address indexed sender, uint256 stake, uint256 interest);
-
 
     constructor(address token, uint256 epoch) {
         s_deployedAt = block.timestamp;
@@ -192,7 +191,7 @@ contract Bank is Ownable, ReentrancyGuard {
         uint256 remainingRewards = rewardPool[1] +
             rewardPool[2] +
             rewardPool[3];
-            
+
         rewardPool[1] = 0;
         rewardPool[2] = 0;
         rewardPool[3] = 0;
