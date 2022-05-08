@@ -4,7 +4,7 @@ pragma solidity ^0.8.4;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 /**
- * @title Tracelabs Bank smart contract task.
+ * @title Mock ERC20 Token (for testing purposes).
  */
 
 contract XYZToken is ERC20 {
