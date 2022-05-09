@@ -31,8 +31,7 @@ jobs:
           npm run test
           npx hardhat coverage
       - name: run_coverage
-      - uses: actions/checkout@master
-      - uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODE_COV_TOKEN }}
         
