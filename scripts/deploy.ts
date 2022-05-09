@@ -14,7 +14,7 @@ async function main() {
     "86400" // 24 hours
   );
 
-  //verify: npx hardhat verify --network rinkeby DEPLOYED_CONTRACT_ADDRESS
+  //verify: npx hardhat verify --network rinkeby --constructor-args arguments.js DEPLOYED_CONTRACT_ADDRESS
   console.log("Bank Contract Address:", bankContract.address);
 }
 

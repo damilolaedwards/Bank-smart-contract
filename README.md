@@ -1,46 +1,63 @@
-# Advanced Sample Hardhat Project
+# Bank smart contract task
 
-This project demonstrates an advanced Hardhat use case, integrating other tools commonly used alongside Hardhat in the ecosystem.
+[![Tests pass](https://github.com/damilolaedwards/tracelabs-challenge/workflows/main.yml/badge.svg)](https://github.com/damilolaedwards/tracelabs-challenge/workflows/main.yml)
 
-The project comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts. It also comes with a variety of other tools, preconfigured to work with the project code.
+## About
 
-Try running some of the following tasks:
+This repository contains the smart contracts source code for the Tracelabs bank smart contract task. The repository uses Hardhat as development enviroment for compilation, testing and deployment tasks.
 
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-npx hardhat help
-REPORT_GAS=true npx hardhat test
-npx hardhat coverage
-npx hardhat run scripts/deploy.ts
-TS_NODE_FILES=true npx ts-node scripts/deploy.ts
-npx eslint '**/*.{js,ts}'
-npx eslint '**/*.{js,ts}' --fix
-npx prettier '**/*.{json,sol,md}' --check
-npx prettier '**/*.{json,sol,md}' --write
-npx solhint 'contracts/**/*.sol'
-npx solhint 'contracts/**/*.sol' --fix
+## Development
+
+First clone this repository and enter the directory.
+
+Install dependencies:
+
+```
+$ yarn
 ```
 
-# Etherscan verification
+## Testing
 
-To try out Etherscan verification, you first need to deploy a contract to an Ethereum network that's supported by Etherscan, such as Ropsten.
+I used [Hardhat](https://hardhat.dev) and [hardhat-deploy](https://github.com/wighawag/hardhat-deploy)
 
-In this project, copy the .env.example file to a file named .env, and then edit it to fill in the details. Enter your Etherscan API key, your Ropsten node URL (eg from Alchemy), and the private key of the account which will send the deployment transaction. With a valid .env file in place, first deploy your contract:
+To run integration tests:
 
-```shell
-hardhat run --network ropsten scripts/deploy.ts
+```sh
+$ npx hardhat test
 ```
 
-Then, copy the deployment address and paste it in to replace `DEPLOYED_CONTRACT_ADDRESS` in this command:
+To run coverage:
 
-```shell
-npx hardhat verify --network ropsten DEPLOYED_CONTRACT_ADDRESS "Hello, Hardhat!"
+```sh
+$ npx hardhat coverage
 ```
 
-# Performance optimizations
+## Rinkeby Ethereum Testnet Setup
 
-For faster runs of your tests and scripts, consider skipping ts-node's type checking by setting the environment variable `TS_NODE_TRANSPILE_ONLY` to `1` in hardhat's environment. For more details see [the documentation](https://hardhat.org/guides/typescript.html#performance-optimizations).
+First, we will need to set environment variables. We can do so by setting them in our `.env` file (create it if it's not there). You can also read more about [environment variables](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html) from the linked twilio blog. You'll find a sample of what this file will look like in `.env.example`
+
+`.env` example:
+
+```
+ETHERSCAN_API_KEY=JFINSOOAIANMJSIN
+RINKEBY_URL='www.infura.io/asdfadsfafdadf'
+PRIVATE_KEY='abcdef'
+```
+
+## Deployment
+
+```sh
+$ npx hardhat deploy --network rinkeby
+```
+
+To verify the auction contract run:
+
+```sh
+$ npx hardhat verify --network rinkeby --constructor-args arguments.js DEPLOYED_CONTRACT_ADDRESS
+```
+
+A verified version of the Auction contract on the Rinkeby network is available at address 0xa45e7eFceDB1BDF2a8eF480D21b0e5A005BCe4FF
+https://rinkeby.etherscan.io/address/0xa45e7eFceDB1BDF2a8eF480D21b0e5A005BCe4FF#code
+
+verified version V1 Contract: 0x9556CcfC01542b33CFA2553c38147de712C3Ac9E
+https://rinkeby.etherscan.io/address/0x9556CcfC01542b33CFA2553c38147de712C3Ac9E#code

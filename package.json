@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "compile": "hardhat compile",
-    "test": "hardhat test",
+    "test": "hardhat test --coverage",
     "coverage": "hardhat coverage",
     "deploy-rinkeby": "hardhat deploy --network rinkeby",
     "verify": "npx hardhat verify --network rinkeby"
