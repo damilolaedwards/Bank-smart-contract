@@ -4,8 +4,6 @@ jobs:
   run-contract-tests:
     name: Run contract tests
     runs-on: ubuntu-latest
-    env:
-      CODECOV_TOKEN: ${{ secrets.CODE_COV_TOKEN }}
     steps:
       # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
@@ -30,10 +28,6 @@ jobs:
         run: |
           npm run test
           npx hardhat coverage
-      - name: run_coverage
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODE_COV_TOKEN }}
-        
+      
 
 
