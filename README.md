@@ -1,6 +1,6 @@
 # Bank smart contract task
 
-[![Tests pass](https://github.com/damilolaedwards/tracelabs-challenge/workflows/main.yml/badge.svg)](https://github.com/damilolaedwards/tracelabs-challenge/workflows/main.yml)
+[![Tests pass](https://github.com/damilolaedwards/tracelabs-challenge/workflows/main.yml/badge.svg)](https://github.com/damilolaedwards/tracelabs-challenge/actions/workflows/main.yml)
 
 ## About
 
