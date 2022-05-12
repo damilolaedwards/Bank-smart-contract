@@ -11,7 +11,7 @@ async function main() {
 
   const bankContract = await Bank.deploy(
     "0x98d9a611ad1b5761bdc1daac42c48e4d54cf5882", // Rinkeby ATRAC ERC20 Token
-    "86400" // 24 hours
+    "604800" // 1 week
   );
 
   //verify: npx hardhat verify --network rinkeby --constructor-args arguments.js DEPLOYED_CONTRACT_ADDRESS

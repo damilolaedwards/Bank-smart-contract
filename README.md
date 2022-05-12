@@ -47,7 +47,7 @@ PRIVATE_KEY='abcdef'
 ## Deployment
 
 ```sh
-$ npx hardhat deploy --network rinkeby
+$ npx hardhat run scripts/deploy.ts --network rinkeby
 ```
 
 To verify the auction contract run:
@@ -56,5 +56,5 @@ To verify the auction contract run:
 $ npx hardhat verify --network rinkeby --constructor-args arguments.js DEPLOYED_CONTRACT_ADDRESS
 ```
 
-A verified version of the Bank contract on the Rinkeby network is available at address 0xCdF3BAd4149a8d43Ea44C0D643fCdCD7A7aeC354
-https://rinkeby.etherscan.io/address/0xCdF3BAd4149a8d43Ea44C0D643fCdCD7A7aeC354#code
+A verified version of the Bank contract on the Rinkeby network is available at address 0xF1d026559513b33468CE562A8A2497F0F443cfFC
+https://rinkeby.etherscan.io/address/0xF1d026559513b33468CE562A8A2497F0F443cfFC#code
