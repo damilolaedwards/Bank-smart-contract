@@ -96,13 +96,13 @@ contract Bank is Ownable, ReentrancyGuard {
         s_rewards += recievedRewards;
 
         //R1 = 20% of R
-        rewardPool[1] = (20 * recievedRewards) / 100;
+        rewardPool[1] += (20 * recievedRewards) / 100;
 
         //R2 = 30% of R
-        rewardPool[2] = (30 * recievedRewards) / 100;
+        rewardPool[2] += (30 * recievedRewards) / 100;
 
         //R3 = 50% of R,
-        rewardPool[3] = (50 * recievedRewards) / 100;
+        rewardPool[3] += (50 * recievedRewards) / 100;
     }
 
     /**
