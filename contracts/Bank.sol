@@ -8,10 +8,13 @@ pragma solidity ^0.8.4;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
 
 contract Bank is Ownable, ReentrancyGuard {
-    error TransferFailed();
+
+    using SafeERC20 for IERC20;
+
 
     //ERC20 staking and reward token
     IERC20 public s_token;
@@ -84,11 +87,7 @@ contract Bank is Ownable, ReentrancyGuard {
      */
 
     function depositReward(uint256 rewards) external onlyOwner depositPeriod {
-        bool success = s_token.transferFrom(msg.sender, address(this), rewards);
-
-        if (!success) {
-            revert TransferFailed();
-        }
+        s_token.safeTransferFrom(msg.sender, address(this), rewards);
 
         s_rewards += rewards;
 
@@ -112,15 +111,16 @@ contract Bank is Ownable, ReentrancyGuard {
         depositPeriod
         moreThanZero(amount)
     {
-        bool success = s_token.transferFrom(msg.sender, address(this), amount);
+        uint256 prevBalance = s_token.balanceOf(address(this));
+        s_token.safeTransferFrom(msg.sender, address(this), amount);
+        uint256 currentBalance = s_token.balanceOf(address(this));
 
-        if (!success) {
-            revert TransferFailed();
-        }
-        s_deposits[msg.sender] += amount;
-        s_totalDeposits += amount;
+        uint256 recievedTokens = currentBalance - prevBalance;
+      
+        s_deposits[msg.sender] += recievedTokens;
+        s_totalDeposits += recievedTokens;
 
-        emit Deposit(msg.sender, amount);
+        emit Deposit(msg.sender, recievedTokens);
     }
 
     /**
@@ -164,14 +164,10 @@ contract Bank is Ownable, ReentrancyGuard {
 
         s_deposits[msg.sender] = 0;
 
-        bool success = s_token.transfer(
+       s_token.safeTransfer(
             msg.sender,
             (userDeposit + (userReward / 1e18))
         );
-
-        if (!success) {
-            revert TransferFailed();
-        }
 
         emit Withdrawal(msg.sender, userDeposit, userReward);
     }
@@ -195,6 +191,6 @@ contract Bank is Ownable, ReentrancyGuard {
         rewardPool[2] = 0;
         rewardPool[3] = 0;
         s_rewards = 0;
-        s_token.transfer(owner(), remainingRewards);
+       s_token.safeTransfer(owner(), remainingRewards);
     }
 }
