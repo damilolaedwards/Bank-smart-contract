@@ -87,18 +87,22 @@ contract Bank is Ownable, ReentrancyGuard {
      */
 
     function depositReward(uint256 rewards) external onlyOwner depositPeriod {
+        uint256 prevBalance = s_token.balanceOf(address(this));
         s_token.safeTransferFrom(msg.sender, address(this), rewards);
+        uint256 currentBalance = s_token.balanceOf(address(this));
 
-        s_rewards += rewards;
+        uint256 recievedRewards = currentBalance - prevBalance;
+
+        s_rewards += recievedRewards;
 
         //R1 = 20% of R
-        rewardPool[1] = (20 * rewards) / 100;
+        rewardPool[1] = (20 * recievedRewards) / 100;
 
         //R2 = 30% of R
-        rewardPool[2] = (30 * rewards) / 100;
+        rewardPool[2] = (30 * recievedRewards) / 100;
 
         //R3 = 50% of R,
-        rewardPool[3] = (50 * rewards) / 100;
+        rewardPool[3] = (50 * recievedRewards) / 100;
     }
 
     /**
