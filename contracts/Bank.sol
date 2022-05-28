@@ -2,7 +2,7 @@
 pragma solidity ^0.8.4;
 
 /**
- * @title Tracelabs Bank smart contract task.
+ * @title Bank smart contract task.
  */
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
